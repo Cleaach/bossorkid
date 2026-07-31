@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boss or Kid?</title>
+  <meta name="description" content="A quote appears. Was it a kid, or was it the boss? Ten rounds. No mercy.">
+  <meta name="theme-color" content="#FDC800">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FDC800'/><text y='.9em' font-size='84' x='14'>🤔</text></svg>">
+</head>
+<body>
+  <div class="stripe" aria-hidden="true"></div>
+
+  <main class="shell">
+
+    <!-- ============================== START ============================== -->
+    <section id="screen-start" class="screen" aria-labelledby="title">
+      <h1 id="title" class="title">
+        <span class="title-line">BOSS</span>
+        <span class="title-or">or</span>
+        <span class="title-line title-line--alt">KID?</span>
+      </h1>
+
+      <p class="tagline">
+        Read the given quote. Decide: did a <strong>bossy child</strong> say it,
+        or did <strong>my childish boss</strong>?
+      </p>
+
+      <div class="card card--rules">
+        <h2 class="card-heading">HOW IT WORKS</h2>
+        <ol class="rules">
+          <li><span class="rules-num">1</span><span>Read the quote.</span></li>
+          <li><span class="rules-num">2</span><span>Hit <b>KID</b> or <b>BOSS</b>.</span></li>
+          <li><span class="rules-num">3</span><span>Ten rounds.</span></li>
+        </ol>
+      </div>
+
+      <button id="btn-start" class="btn btn--primary btn--xl" type="button">START GAME</button>
+
+      <p class="best-line" id="best-line" hidden>
+        YOUR BEST: <span class="badge badge--violet" id="best-score">0/10</span>
+      </p>
+    </section>
+
+    <!-- =============================== QUIZ ============================== -->
+    <section id="screen-quiz" class="screen" hidden aria-live="polite">
+      <header class="hud">
+        <span class="badge" id="hud-progress">1 / 10</span>
+        <span class="badge badge--violet" id="hud-score">SCORE 0</span>
+        <span class="badge badge--streak" id="hud-streak" hidden>🔥 0</span>
+      </header>
+
+      <div class="progressbar" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="progressbar">
+        <div class="progressbar-fill" id="progressbar-fill"></div>
+      </div>
+
+      <div class="card card--quote" id="quote-card">
+        <span class="quote-mark" aria-hidden="true">“</span>
+        <p class="quote-text" id="quote-text">…</p>
+      </div>
+
+      <div class="answers" id="answers">
+        <button class="btn btn--answer btn--kid" type="button" data-answer="kid">
+          <span class="answer-emoji" aria-hidden="true">🧒</span>
+          <span>KID</span>
+        </button>
+        <button class="btn btn--answer btn--boss" type="button" data-answer="boss">
+          <span class="answer-emoji" aria-hidden="true">💼</span>
+          <span>BOSS</span>
+        </button>
+      </div>
+
+      <div class="verdict" id="verdict" hidden>
+        <div class="card card--verdict" id="verdict-card">
+          <p class="verdict-headline" id="verdict-headline">IT'S A KID</p>
+          <p class="verdict-detail" id="verdict-detail" hidden></p>
+        </div>
+
+        <div class="card card--video" id="verdict-video" hidden>
+          <p class="video-head">📼 THE RECEIPTS</p>
+          <div class="video-frame" id="video-frame"></div>
+        </div>
+
+        <button class="btn btn--primary btn--lg" id="btn-next" type="button">NEXT →</button>
+      </div>
+
+      <p class="hint">Tip: press <kbd>1</kbd> for KID, <kbd>2</kbd> for BOSS, <kbd>Enter</kbd> to continue.</p>
+    </section>
+
+    <!-- ============================== RESULTS ============================= -->
+    <section id="screen-results" class="screen" hidden aria-labelledby="results-heading">
+      <h2 id="results-heading" class="results-heading" >THE VERDICT</h2>
+
+      <div class="card card--score">
+        <p class="score-big"><span id="final-score">0</span><span class="score-total">/10</span></p>
+        <p class="score-rank" id="score-rank">…</p>
+      </div>
+
+      <div class="card card--stats">
+        <dl class="stats">
+          <div class="stat"><dt>BEST STREAK</dt><dd id="stat-streak">0</dd></div>
+          <div class="stat"><dt>TIME</dt><dd id="stat-time">0s</dd></div>
+          <div class="stat"><dt>PERSONAL BEST</dt><dd id="stat-best">0</dd></div>
+        </dl>
+      </div>
+
+      <details class="card card--review">
+        <summary class="review-summary">REVIEW YOUR ANSWERS</summary>
+        <ul class="review-list" id="review-list"></ul>
+      </details>
+
+      <div class="results-actions">
+        <button class="btn btn--primary btn--lg" id="btn-again" type="button">PLAY AGAIN</button>
+        <button class="btn btn--secondary btn--lg" id="btn-home" type="button">GO BACK HOME</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Made for laughs. All boss quotes allegedly real.</p>
+  </footer>
+
+  <script src="quotes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

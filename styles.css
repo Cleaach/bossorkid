@@ -1,0 +1,522 @@
+/* ==========================================================================
+   Boss or Kid? — neobrutalist stylesheet
+   Tokens are the source of truth; nothing below hardcodes a raw colour.
+   ========================================================================== */
+
+:root {
+  /* --- colour ---------------------------------------------------------- */
+  --primary:   #FDC800;
+  --secondary: #432DD7;
+  --success:   #16A34A;
+  --warning:   #D97706;
+  --danger:    #DC2626;
+  --surface:   #FBFBF9;
+  --text:      #1C293C;
+  --ink:       #000000; /* structural border colour */
+
+  /* --- typography ------------------------------------------------------ */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --fs-1: 13px;
+  --fs-2: 15px;
+  --fs-3: 17px;
+  --fs-4: 21px;
+  --fs-5: 27px;
+  --fs-6: 35px;
+
+  /* --- spacing (4px base) ---------------------------------------------- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+
+  /* --- neobrutalist structure ------------------------------------------ */
+  --border: 3px solid var(--ink);
+  --border-thin: 2px solid var(--ink);
+  --shadow:    5px 5px 0 0 var(--ink);
+  --shadow-lg: 8px 8px 0 0 var(--ink);
+  --shadow-sm: 3px 3px 0 0 var(--ink);
+  --radius: 0px; /* flat and square by default */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: var(--fs-3);
+  line-height: 1.45;
+  color: var(--text);
+  background-color: var(--surface);
+  /* flat grid, no gradients — pure structure */
+  background-image:
+    linear-gradient(to right, rgba(28, 41, 60, .07) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(28, 41, 60, .07) 2px, transparent 2px);
+  background-size: 32px 32px;
+}
+
+/* Top stripe: a slab of primary that anchors the page. */
+.stripe {
+  height: 16px;
+  background: var(--primary);
+  border-bottom: var(--border);
+}
+
+.shell {
+  flex: 1;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.screen { display: flex; flex-direction: column; gap: var(--sp-5); }
+[hidden] { display: none !important; }
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.card {
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: var(--sp-5);
+}
+
+.card-heading {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-2);
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Start screen
+   ========================================================================== */
+
+.title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  line-height: .95;
+}
+
+.title-line {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-4);
+  font-size: clamp(var(--fs-6), 13vw, 64px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  background: var(--primary);
+  border: var(--border);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-2deg);
+}
+
+.title-line--alt {
+  align-self: flex-end;
+  background: var(--secondary);
+  color: var(--surface);
+  transform: rotate(2deg);
+}
+
+/* Sits in the notch between the two slabs, on the BOSS -> KID diagonal.
+   Negative margins pull the slabs together; line-height 1 kills the leading
+   that was doing most of the damage. */
+.title-or {
+  align-self: center;
+  margin: -2px 0 -4px;
+  font-size: var(--fs-4);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+}
+
+.tagline {
+  margin: 0;
+  font-size: var(--fs-4);
+  font-weight: 500;
+}
+.tagline strong { font-weight: 900; }
+
+.rules {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  font-size: var(--fs-3);
+}
+
+.rules li { display: flex; align-items: center; gap: var(--sp-3); }
+
+.rules-num {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--fs-2);
+  background: var(--primary);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-sm);
+}
+
+.best-line {
+  margin: 0;
+  font-size: var(--fs-2);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  font-family: inherit;
+  font-size: var(--fs-3);
+  font-weight: 900;
+  letter-spacing: .06em;
+  color: var(--text);
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  padding: var(--sp-3) var(--sp-5);
+  cursor: pointer;
+  /* shadow travel only — no colour fades, no easing theatrics */
+  transition: transform .08s steps(2), box-shadow .08s steps(2);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--ink);
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 0 var(--ink);
+}
+
+.btn:focus-visible {
+  outline: 4px solid var(--secondary);
+  outline-offset: 3px;
+}
+
+.btn:disabled { cursor: not-allowed; opacity: .55; }
+.btn:disabled:hover { transform: none; box-shadow: var(--shadow); }
+
+.btn--primary   { background: var(--primary); }
+.btn--secondary { background: var(--secondary); color: var(--surface); }
+.btn--lg { font-size: var(--fs-4); padding: var(--sp-4) var(--sp-5); }
+.btn--xl { font-size: var(--fs-5); padding: var(--sp-4) var(--sp-6); width: 100%; }
+
+/* ==========================================================================
+   Quiz screen
+   ========================================================================== */
+
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: var(--sp-1) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-1);
+  font-weight: 700;
+  letter-spacing: .08em;
+  background: var(--primary);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-sm);
+}
+
+.badge--violet { background: var(--secondary); color: var(--surface); }
+.badge--streak { background: var(--warning); color: var(--surface); }
+
+.progressbar {
+  height: 20px;
+  background: var(--surface);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.progressbar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--secondary);
+  border-right: var(--border-thin);
+  transition: width .18s steps(4);
+}
+
+.card--quote {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-6) var(--sp-5) var(--sp-5);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Yellow tab notched over the card's top-left corner. The glyph sits in the
+   upper half of its em box, so the line-height nudges it back to centre
+   instead of clipping it. */
+.quote-mark {
+  position: absolute;
+  top: -20px;
+  left: var(--sp-4);
+  width: 44px;
+  height: 44px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 62px;
+  text-align: center;
+  background: var(--primary);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.quote-text {
+  margin: 0;
+  font-size: clamp(var(--fs-4), 5.5vw, var(--fs-5));
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.btn--answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-5) var(--sp-3);
+  font-size: var(--fs-5);
+}
+
+.answer-emoji { font-size: 40px; line-height: 1; }
+
+.btn--kid  { background: var(--primary); }
+.btn--boss { background: var(--secondary); color: var(--surface); }
+
+/* Post-answer marking. Colour + text, never colour alone.
+   These buttons are disabled once answered, so the marked ones have to opt out
+   of the generic .btn:disabled fade or the verdict colours wash out. */
+.btn--answer.is-right { background: var(--success); color: var(--surface); opacity: 1; }
+.btn--answer.is-wrong { background: var(--danger);  color: var(--surface); opacity: 1; }
+.btn--answer.is-muted { opacity: .4; }
+
+.verdict { display: flex; flex-direction: column; gap: var(--sp-4); }
+
+.card--verdict { box-shadow: var(--shadow); }
+.card--verdict.is-right { background: var(--success); color: var(--surface); }
+.card--verdict.is-wrong { background: var(--danger);  color: var(--surface); }
+
+.verdict-headline {
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-5);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+/* Carries the quote's `note` — the context/punchline, not a correctness line. */
+.verdict-detail {
+  margin: var(--sp-3) 0 0;
+  padding-top: var(--sp-3);
+  font-size: var(--fs-2);
+  font-weight: 500;
+  border-top: var(--border-thin);
+  border-color: currentColor;
+}
+
+/* Proof video. Lives outside the green/red card so the thumbnail is not
+   fighting a saturated background. */
+.card--video { padding: var(--sp-3); }
+
+.video-head {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-1);
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--text);
+  border: var(--border-thin);
+}
+
+.video-link {
+  display: block;
+  margin-top: var(--sp-3);
+  font-size: var(--fs-1);
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--secondary);
+  text-underline-offset: 3px;
+}
+.video-link:focus-visible { outline: 4px solid var(--secondary); outline-offset: 2px; }
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.hint { margin: 0; font-size: var(--fs-1); text-align: center; opacity: .75; }
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: var(--fs-1);
+  padding: 1px var(--sp-1);
+  background: var(--surface);
+  border: var(--border-thin);
+  box-shadow: 2px 2px 0 0 var(--ink);
+}
+
+/* ==========================================================================
+   Results screen
+   ========================================================================== */
+
+.results-heading {
+  margin: 0;
+  align-self: flex-start;
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-5);
+  font-weight: 900;
+  letter-spacing: .06em;
+  background: var(--primary);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  transform: rotate(-1.5deg);
+}
+
+.card--score { text-align: center; box-shadow: var(--shadow-lg); }
+
+.score-big {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-total { font-size: var(--fs-5); opacity: .55; }
+
+.score-rank {
+  margin: var(--sp-4) 0 0;
+  font-size: var(--fs-4);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+
+.stats { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.stat { text-align: center; }
+.stat dt { font-size: var(--fs-1); font-weight: 700; letter-spacing: .08em; }
+.stat dd {
+  margin: var(--sp-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-4);
+  font-weight: 700;
+}
+
+.card--review { padding: 0; }
+
+.review-summary {
+  padding: var(--sp-4) var(--sp-5);
+  font-size: var(--fs-2);
+  font-weight: 900;
+  letter-spacing: .1em;
+  cursor: pointer;
+  background: var(--primary);
+  border-bottom: var(--border);
+}
+.review-summary:focus-visible { outline: 4px solid var(--secondary); outline-offset: -4px; }
+.card--review:not([open]) .review-summary { border-bottom: none; }
+
+.review-list { margin: 0; padding: var(--sp-4); list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); }
+
+.review-item {
+  display: flex;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  font-size: var(--fs-2);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-sm);
+}
+
+.review-item .mark { font-weight: 900; font-family: var(--font-mono); }
+.review-item.is-right { background: var(--surface); }
+.review-item.is-wrong { background: var(--primary); }
+.review-item .who { display: block; margin-top: var(--sp-1); font-size: var(--fs-1); font-weight: 700; letter-spacing: .06em; }
+
+.results-actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+
+.leaderboard-teaser {
+  margin: 0;
+  padding: var(--sp-3);
+  text-align: center;
+  font-size: var(--fs-1);
+  font-weight: 900;
+  letter-spacing: .12em;
+  border: var(--border-thin);
+  border-style: dashed;
+}
+
+.footer {
+  padding: var(--sp-4);
+  text-align: center;
+  font-size: var(--fs-1);
+  border-top: var(--border);
+  background: var(--primary);
+}
+.footer p { margin: 0; font-weight: 700; }
+
+/* ==========================================================================
+   Small screens
+   ========================================================================== */
+
+@media (max-width: 420px) {
+  .shell { padding: var(--sp-5) var(--sp-3); }
+  .answers { gap: var(--sp-3); }
+  .btn--answer { font-size: var(--fs-4); }
+  .results-actions { grid-template-columns: 1fr; }
+  .score-big { font-size: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  .title-line, .results-heading { transform: none; }
+}

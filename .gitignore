@@ -1,0 +1,16 @@
+# Source recordings and transcripts — raw meeting material, never publish.
+# Quotes get hand-copied into quotes.js; the originals stay off the repo.
+*.txt
+!README.txt
+New_Recording*
+*.srt
+*.vtt
+*.m4a
+*.mp3
+*.mp4
+*.wav
+
+# Local scratch
+_*.html
+.DS_Store
+Thumbs.db
