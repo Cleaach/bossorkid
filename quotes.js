@@ -28,18 +28,19 @@ const QUOTES = [
 
   // --------------------------------------------------------------- boss ----
   { text: "Can you sing happy birthday to me?", source: 'boss' },
-  { text: "My aura is so big!", source: 'boss', note: 'When asked about why an employee looks nervous talking to him.' },
-  { text: "Because I am a diva!", source: 'boss', note: 'When comparing themselves to a client.' },
-  { text: "Sunday don't need to work, just watch YouTube videos.", source: 'boss', note: 'As in watching design knowledge videos, when recommending what to do to stay productive during the weekend.'},
-  { text: "I want to go and roll in my bed...", source: 'boss', note: 'How the meeting ended.' },
-  { text: "You don't even follow me!", source: 'boss', note: 'When asked about the firm\'s Instagram page.' },
+  { text: "My aura is so big!", source: 'boss'},
+  { text: "Because I am a diva!", source: 'boss'},
+  { text: "Sunday don't need to work, just watch YouTube videos.", source: 'boss'},
+  { text: "I want to go and roll in my bed...", source: 'boss'},
+  { text: "You don't even follow me!", source: 'boss'},
   { text: "I want to see your sister's face.", source: 'boss'},
   { text: "What does your mom do?", source: "boss"},
-  { text: "This is where I learned how to cycle!", source: "boss", note: "When giving a tour around their childhood neighborhood."},
+  { text: "This is where I learned how to cycle!", source: "boss"},
   { text: "Everything I say will happen.", source: "boss"},
-  { text: "Careful, there is a water devil here...", source: "boss", note: "When passing by a river near their old house."},
+  { text: "Careful, there is a water devil here...", source: "boss"},
   { text: "Can you be friendlier to me?", source: "boss"},
   { text: "I want to swing something at you.", source: "boss"},
+  { text: "I want to buy a robot to slap people.", source: "boss"}
 
 ];
 
