@@ -40,8 +40,8 @@ const QUOTES = [
   { text: "Careful, there is a water devil here...", source: "boss"},
   { text: "Can you be friendlier to me?", source: "boss"},
   { text: "I want to swing something at you.", source: "boss"},
-  { text: "I want to buy a robot to slap people.", source: "boss"}
-
+  { text: "I want to buy a robot to slap people.", source: "boss"},
+  { text: "Let's be nice to each other.", source: "boss"},
 ];
 
 // Expose for app.js (plain script tag, no bundler, no modules -> works on
